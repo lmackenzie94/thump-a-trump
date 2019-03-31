@@ -59,7 +59,7 @@ const countdown = () => {
     document.querySelector('.countdown').innerHTML = '10';
     let timeLeft = 9;
     let timer = setInterval(() => {
-        document.querySelector('.countdown').innerHTML = timeLeft;
+        document.querySelector('.countdown').innerHTML = `${timeLeft < 10 ? '0' : ''}${timeLeft}`;
         timeLeft -= 1;
         if (timeLeft < 0) {
             clearInterval(timer);
