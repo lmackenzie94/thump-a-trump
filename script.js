@@ -21,7 +21,7 @@ function randomHouse(houses) {
 }
 
 function jump() {
-    const time = randomTime(400, 1000);
+    const time = randomTime(300, 1000);
     const house = randomHouse(houses);
     house.classList.add('up');
     setTimeout(() => {
@@ -40,15 +40,30 @@ function thump(e) {
 }
 
 function startGame() {
+    timeUp = false;
     scoreboard.textContent = 0;
     score = 0;
     jump();
+    countdown();
     setTimeout(() => {
         timeUp = true;
         swal({
             title: "Game over!",
-            text: `You thumped ${score} Trumps!`,
+            text: `You thumped ${score} ${score === 1 ? 'Trump!' : 'Trumps!'}`,
             icon: "success"
         });
     }, 10000);
+}
+
+const countdown = () => {
+    document.querySelector('.countdown').innerHTML = '10';
+    let timeLeft = 9;
+    let timer = setInterval(() => {
+        document.querySelector('.countdown').innerHTML = timeLeft;
+        timeLeft -= 1;
+        if (timeLeft < 0) {
+            clearInterval(timer);
+            document.querySelector('.countdown').innerHTML = '0';
+        }
+    }, 1000) 
 }

@@ -19,11 +19,20 @@ body {
     width: 100vw;
 }
 
-h2 {
-    display: inline-block;
-    position: absolute;
-    top: 5%;
-    right: 15%;
+.wrapper {
+    max-width: 1000px;
+    width: 95%;
+    margin: 0 auto;
+}
+
+h1 {
+    margin: 0;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .game {
@@ -51,7 +60,7 @@ h2 {
     background-size: cover;
     position: absolute;
     width: 110%;
-    height: 80px;
+    height: 100px;
     bottom: 0;
     left: -10px;
     z-index: 2;
@@ -60,27 +69,41 @@ h2 {
 .trump {
     height: 100%;
     width: 100%;
-    background: url(assets/trump.png) center 20% no-repeat;
-    background-size: contain;
     position: absolute;
     top: 100%;
     transition: all .2s linear;
+    background-size: contain;
 }
 
 .trump:active {
     transform: scale(.5);
 }
 
+.trump.trump1 {
+    background: url(assets/trump.png) center 20% no-repeat;
+    background-size: contain;
+}
+
+.trump.trump2 {
+    background: url(assets/trump2.png) center 40% no-repeat;
+    background-size: contain;
+}
+
+.trump.trump3 {
+    background: url(assets/trump3.png) center 40% no-repeat;
+    background-size: contain;
+}
+
 .house.up .trump {
-    top: 15px;
+    top: 0;
 }
 
 .start {
     background: white;
     border: none;
     box-shadow: 5px 5px 0 coral;
-    padding: 0 20px;
-    margin-top: 20px;
+    padding: 10px 20px;
+    margin: 30px 0;
     transition: all .2s ease-out;
 }
 
@@ -93,7 +116,8 @@ h2 {
     transform: scale(.9);
 }
 
-.score {
+.score,
+.countdown {
     color: coral;
 }
 

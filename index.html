@@ -8,26 +8,32 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <button class="start" onClick="startGame()"><h1>Thump-A-Trump</h1></button>
-    <h2>Score: <span class="score"></span></h2>
+    <header class="wrapper">
+        <h2>Time: <span class="countdown">10</span></h2>
+        <button class="start" onClick="startGame()">
+            <h1>Thump-A-Trump</h1>
+        </button>
+        <h2>Score: <span class="score">0</span></h2>
+    </header>
+    
     <section class="game">
         <div class="house house1">
-            <div class="trump"></div>
+            <div class="trump trump1"></div>
         </div>
         <div class="house house2">
-            <div class="trump"></div>
+            <div class="trump trump2"></div>
         </div>
         <div class="house house3">
-            <div class="trump"></div>
+            <div class="trump trump3"></div>
         </div>
         <div class="house house4">
-            <div class="trump"></div>
+            <div class="trump trump2"></div>
         </div>
         <div class="house house5">
-            <div class="trump"></div>
+            <div class="trump trump3"></div>
         </div>
         <div class="house house6">
-            <div class="trump"></div>
+            <div class="trump trump1"></div>
         </div>
     </section>
 
