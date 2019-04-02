@@ -29,6 +29,16 @@ body {
 h1 {
     margin: 0;
     font-size: 1.5rem;
+    position: relative;
+}
+
+h1:before {
+    content: "Click below to play";
+    position: absolute;
+    font-size: 0.6rem;
+    top: -27px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 header {
@@ -162,13 +172,15 @@ header p:focus {
     border: none;
     box-shadow: 5px 5px 0 coral;
     padding: 10px 20px;
-    margin: 30px 0;
+    margin: 35px 0 20px 0;
     transition: all .2s ease-out;
 }
 
 .start:hover,
 .start:focus {
     box-shadow: none;
+    background: coral;
+    color: black;
 }
 
 .start:active {
