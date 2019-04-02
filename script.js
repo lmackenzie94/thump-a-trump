@@ -1,6 +1,9 @@
 const trumps = document.querySelectorAll('.trump');
 const houses = document.querySelectorAll('.house');
 const scoreboard = document.querySelector('.score');
+const leaderboard = document.querySelector('.leaderboard');
+const leaderboardButton = document.querySelector('.leaderboardButton');
+const closeButton = document.querySelector('.close');
 let lastHouse;
 let timeUp = false;
 
@@ -48,8 +51,8 @@ function startGame() {
     setTimeout(() => {
         timeUp = true;
         swal({
-            title: "Game over!",
-            text: `You thumped ${score} ${score === 1 ? 'Trump!' : 'Trumps!'}`,
+            title: "GAME OVER",
+            text: `Congratulations! You thumped ${score} ${score === 1 ? 'Trump!' : 'Trumps!'}`,
             icon: "success"
         });
     }, 10000);
@@ -67,3 +70,19 @@ const countdown = () => {
         }
     }, 1000) 
 }
+
+const openLeaderboard = () => {
+    leaderboard.style.display = "block";
+}
+
+const closeLeaderboard = (e) => {
+    if (e.target === leaderboard || e.target === closeButton){
+        leaderboard.style.display = "none";
+    } else {
+        return;
+    }
+}
+
+leaderboardButton.addEventListener('click', openLeaderboard);
+closeButton.addEventListener('click', closeLeaderboard);
+window.addEventListener('click', closeLeaderboard);
