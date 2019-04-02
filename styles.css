@@ -64,16 +64,16 @@ header p:focus {
     right: 0;
     background: rgba(0,0,0,0.8);
     z-index: 3;
-    padding-top: 40px;
+    padding-top: 105px;
     cursor: default;
     display: none;
 }
 
 .leaderboardModal {
     background: white;
-    width: 80%;
+    width: 60%;
     margin: 0 auto;
-    min-height: 80%;
+    min-height: 60%;
     padding: 10px;
     border-radius: 15px;
     position: relative;
