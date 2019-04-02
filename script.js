@@ -51,9 +51,18 @@ function startGame() {
     setTimeout(() => {
         timeUp = true;
         swal({
-            title: "GAME OVER",
-            text: `Congratulations! You thumped ${score} ${score === 1 ? 'Trump!' : 'Trumps!'}`,
-            icon: "success"
+            title: `You thumped ${score} ${score === 1 ? 'Trump!' : 'Trumps!'}`,
+            content: "input",
+            text: "Enter your name below to save your score:",
+            icon: "success",
+            buttons: {
+                cancel: true,
+                confirm: "Submit"
+            }
+        }).then(val => {
+            userName = val;
+            userScore = score;
+            addToLeaderboard(userName, score);
         });
     }, 10000);
 }
@@ -86,3 +95,12 @@ const closeLeaderboard = (e) => {
 leaderboardButton.addEventListener('click', openLeaderboard);
 closeButton.addEventListener('click', closeLeaderboard);
 window.addEventListener('click', closeLeaderboard);
+
+
+const addToLeaderboard = (username, score) => {
+    const dbRef = firebase.database().ref().child(username);
+    dbRef.set({
+        score
+    });
+    console.log(dbRef);
+}
