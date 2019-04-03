@@ -48,6 +48,12 @@ header {
     flex-wrap: wrap;
 }
 
+ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
 header > * {
     flex: 1 0 calc(100% / 3);
 }
@@ -83,10 +89,37 @@ header p:focus {
     background: white;
     width: 60%;
     margin: 0 auto;
-    min-height: 60%;
-    padding: 10px;
+    height: 80%;
+    padding: 10px 10px 40px 10px;
     border-radius: 15px;
     position: relative;
+    overflow: scroll;
+}
+
+.leaderboardList {
+    display: flex;
+    justify-content: center;
+}
+
+.leaderboardList h2 {
+    font-size: 1rem;
+    color: dodgerblue;
+}
+
+.leaderboardListUser {
+    width: 35%;
+    text-align: left;
+}
+
+.leaderboardListScore {
+    width: 35%;
+    text-align: center;
+}
+
+.leaderboardListUser li,
+.leaderboardListScore li {
+    margin: 15px 0;
+    border-bottom: .1px solid lightcoral;
 }
 
 .close {
