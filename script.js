@@ -71,6 +71,7 @@ function startGame() {
             userName = val;
             userScore = score;
             addToLeaderboard(userName, score);
+            openLeaderboard();
         });
     }, 10000);
 }
@@ -116,15 +117,15 @@ const addToLeaderboard = (username, score) => {
     updateLeaderboard();
 }
 
-const leaderboardArray = [];
-
+// function to update the leaderboard array
 const updateLeaderboard = () => {
     
+    const leaderboardArray = [];
+
     const dbRef = firebase.database().ref();
-    
     dbRef.on('value', snapshot => {
         const data = snapshot.val();
-        console.log(data);
+        // console.log(data);
         for (entry in data) {
             leaderboardArray.push({
                 user: entry,
@@ -132,23 +133,22 @@ const updateLeaderboard = () => {
             })
         }
     })
-
-    test();
+    displayLeaderboard(leaderboardArray);
 }
 
-const test = () => {
+// function to display username and score in descending order on the page
+const displayLeaderboard = (leaderboardArray) => {
 
     const sortedLeaderboardArray = leaderboardArray.sort((a,b) => {
         return (b.score - a.score);
     })
-
 
     sortedLeaderboardArray.forEach(score => {
 
         leaderboardListUser.innerHTML += `<li>${score.user}</li>`;
         leaderboardListScore.innerHTML += `<li>${score.score}</li>`;
 
-
-
     });
 }
+
+updateLeaderboard();
