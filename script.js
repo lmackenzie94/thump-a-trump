@@ -168,43 +168,7 @@ const updateLeaderboard = () => {
     })
 }
 
-            // console.log(dbRef);
-            // dbRef.on('value', snapshot => {
-            //     const data = snapshot.val();
-            //     for (entry in data) {
-            //         leaderboardArray.push({
-            //             user: entry,
-            //             score: data[entry].score
-            //         })
-            //     }
-            // })
-    
-            // setInterval(()=> {
-            //     resolve();
-            // }, 1500)
-//         })
-//     } else {
-//         const dbRef = firebase.database().ref();
-//         dbRef.on('value', snapshot => {
-//             const data = snapshot.val();
-//             for (entry in data) {
-//                 leaderboardArray.push({
-//                     user: entry,
-//                     score: data[entry].score
-//                 })
-//             }
-//         })
-//     }
-// }
-
-// async function init() {
-//     await updateLeaderboard();
-//     displayLeaderboard();
-// }
-
-// init();
-
-updateLeaderboard();
+updateLeaderboard(); // run on page load to immediately populate the leaderboard
 
 
 
