@@ -20,6 +20,27 @@ body {
     letter-spacing: .05rem;
 }
 
+.workInProgress {
+    font-size: .6rem;
+    color: white;
+    background: red;
+    padding: 5px 10px;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    border-radius: 5px;
+    animation: glow 1s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 0 red;
+    }
+    to {
+        box-shadow: 0 0 10px red;
+    }
+}
+
 .wrapper {
     max-width: 1000px;
     width: 95%;
@@ -80,17 +101,15 @@ header p:focus {
     right: 0;
     background: rgba(0,0,0,0.8);
     z-index: 3;
-    padding-top: 105px;
     cursor: default;
     display: none;
 }
 
 .leaderboardModal {
     background: white;
-    width: 60%;
-    margin: 0 auto;
-    height: 80%;
-    padding: 10px 10px 40px 10px;
+    width: 50%;
+    margin: 50px auto 0 auto;
+    padding: 20px;
     border-radius: 15px;
     position: relative;
     overflow: scroll;
@@ -100,17 +119,13 @@ header p:focus {
     margin: 10px 0;
 }
 
-.leaderboardModal h2 span {
-    color: coral;
-}
-
 .leaderboardList {
     display: flex;
     justify-content: center;
 }
 
 .leaderboardColumn {
-    width: 35%;
+    flex: 0 1 190px;
     text-align: center;
 }
 
