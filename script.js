@@ -7,6 +7,7 @@ const leaderboardListUser = document.querySelector('.leaderboardListUser');
 const leaderboardListScore = document.querySelector('.leaderboardListScore');
 const closeButton = document.querySelector('.close');
 const startGameButton = document.querySelector('.start');
+const clickBlocker = document.querySelector('.blockClicks');
 let lastHouse;
 let timeUp = false;
 let leaderboardArray = [];
@@ -48,6 +49,46 @@ function thump(e) {
     scoreboard.textContent = score;
 }
 
+// used to temporarily block clicks after game time runs out so user doesn't accidentally close the alert modal
+// REMINDER: look into SweetAlerts allowEnterKey method
+clickBlocker.addEventListener('click', e => {
+    e.stopPropagation();
+    e.preventDefault();
+})
+
+const handleScoreSubmit = (score) => {
+    swal({
+        title: `You thumped ${score} ${score === 1 ? 'Trump!' : 'Trumps!'}`,
+        content: "input",
+        text: "Enter your name below to save your score:",
+        icon: "success",
+        buttons: {
+            cancel: true,
+            confirm: "Post Score"
+        }
+    }).then(val => {
+        userName = val;
+        userScore = score;
+        addToLeaderboard(userName, score);
+        openLeaderboard();
+    }).catch(err => {
+        if (err && userName !== null) {
+            swal({
+                title: "Oops, something went wrong!",
+                text: "Please make sure the name you entered does not contain any special characters ( . # $ [ ] etc. )",
+                icon: "error",
+                buttons: {
+                    confirm: "Try Again",
+                }
+            }) 
+            // TO FIX: pressing Enter on error message doesn't close the modal (but clicking the button does)
+            .then(()=>{
+                handleScoreSubmit(score);
+            })
+        } else return;
+    });
+}
+
 let score;
 // function to start the game
 function startGame() {
@@ -58,23 +99,14 @@ function startGame() {
     countdown();
     startGameButton.disabled = true;
     setTimeout(() => {
+        //quickly block all clicks
+        clickBlocker.style.display = "block";
+        setTimeout(() => {
+            clickBlocker.style.display = "none";
+        }, 2000);
         timeUp = true;
         startGameButton.disabled = false;
-        swal({
-            title: `You thumped ${score} ${score === 1 ? 'Trump!' : 'Trumps!'}`,
-            content: "input",
-            text: "Enter your name below to save your score:",
-            icon: "success",
-            buttons: {
-                cancel: true,
-                confirm: "Submit"
-            }
-        }).then(val => {
-            userName = val;
-            userScore = score;
-            addToLeaderboard(userName, score);
-            openLeaderboard();
-        });
+        handleScoreSubmit(score);
     }, 10000);
 }
 
@@ -106,6 +138,7 @@ const closeLeaderboard = (e) => {
     }
 }
 
+// event listeners
 leaderboardButton.addEventListener('click', openLeaderboard);
 closeButton.addEventListener('click', closeLeaderboard);
 window.addEventListener('click', closeLeaderboard);
@@ -126,6 +159,7 @@ const displayLeaderboard = () => {
         return (b.score - a.score);
     })
 
+    // limit leaderboard to only show top 10 scores
     if (finalLeaderboardArray.length > 10) {
         finalLeaderboardArray = finalLeaderboardArray.slice(0, 10);
     } 
@@ -147,7 +181,6 @@ const updateLeaderboard = () => {
     leaderboardListScore.innerHTML = '';
 
     firebase.database().ref().once('value')
-    
     .then(res => { //once returns a promise
         const data = res.val();
         let promises = [];
@@ -161,7 +194,7 @@ const updateLeaderboard = () => {
                 score: data[entry].score
             })
         }
-        return Promise.all(promises);
+        return Promise.all(promises); // wait for all promises to resolve before running displayLeaderboard
     })
     .then(displayLeaderboard)
     .catch(err => {
