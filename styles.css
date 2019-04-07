@@ -129,6 +129,12 @@ header p:focus {
     border-bottom: .1px solid lightcoral;
 }
 
+.listNumber {
+    color: lightcoral;
+    margin-right: 10px;
+    font-size: 80%;
+}
+
 .close {
     position: fixed;
     top: 10px;

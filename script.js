@@ -130,11 +130,12 @@ const displayLeaderboard = () => {
         finalLeaderboardArray = finalLeaderboardArray.slice(0, 10);
     } 
 
+    let i = 1;
     finalLeaderboardArray.forEach(score => {
 
-        leaderboardListUser.innerHTML += `<li>${score.user}</li>`;
+        leaderboardListUser.innerHTML += `<li><span class="listNumber">${i}.</span>${score.user}</li>`;
         leaderboardListScore.innerHTML += `<li>${score.score}</li>`;
-
+        i++;
     });
 }
 
