@@ -9,6 +9,7 @@ const closeButton = document.querySelector('.close');
 const startGameButton = document.querySelector('.start');
 let lastHouse;
 let timeUp = false;
+let leaderboardArray = [];
 
 // function to show Trump for random amount of time
 function randomTime(min, max) {
@@ -41,12 +42,13 @@ trumps.forEach(trump => trump.addEventListener('click', thump));
 
 // add to score when user successfully clicks on a visible Trump
 function thump(e) {
-    if(!e.isTrusted) return;
+    if (!e.isTrusted) return;
     score++;
     this.classList.remove('up');
     scoreboard.textContent = score;
 }
 
+let score;
 // function to start the game
 function startGame() {
     timeUp = false;
@@ -87,7 +89,7 @@ const countdown = () => {
             clearInterval(timer);
             document.querySelector('.countdown').innerHTML = '0';
         }
-    }, 1000) 
+    }, 1000)
 }
 
 // function to open leaderboard modal
@@ -97,7 +99,7 @@ const openLeaderboard = () => {
 
 // function to close leaderboard modal
 const closeLeaderboard = (e) => {
-    if (e.target === leaderboard || e.target === closeButton){
+    if (e.target === leaderboard || e.target === closeButton) {
         leaderboard.style.display = "none";
     } else {
         return;
@@ -117,33 +119,18 @@ const addToLeaderboard = (username, score) => {
     updateLeaderboard();
 }
 
-// function to update the leaderboard array
-const updateLeaderboard = () => {
-    
-    const leaderboardArray = [];
-
-    const dbRef = firebase.database().ref();
-    dbRef.on('value', snapshot => {
-        const data = snapshot.val();
-        // console.log(data);
-        for (entry in data) {
-            leaderboardArray.push({
-                user: entry,
-                score: data[entry].score
-            })
-        }
-    })
-    displayLeaderboard(leaderboardArray);
-}
-
 // function to display username and score in descending order on the page
-const displayLeaderboard = (leaderboardArray) => {
+const displayLeaderboard = () => {
 
-    const sortedLeaderboardArray = leaderboardArray.sort((a,b) => {
+    let finalLeaderboardArray = leaderboardArray.sort((a, b) => {
         return (b.score - a.score);
     })
 
-    sortedLeaderboardArray.forEach(score => {
+    if (finalLeaderboardArray.length > 10) {
+        finalLeaderboardArray = finalLeaderboardArray.slice(0, 10);
+    } 
+
+    finalLeaderboardArray.forEach(score => {
 
         leaderboardListUser.innerHTML += `<li>${score.user}</li>`;
         leaderboardListScore.innerHTML += `<li>${score.score}</li>`;
@@ -151,4 +138,77 @@ const displayLeaderboard = (leaderboardArray) => {
     });
 }
 
+// function to update the leaderboard array
+const updateLeaderboard = () => {
+
+    leaderboardArray = [];
+    leaderboardListUser.innerHTML = ''; //find better way to do this
+    leaderboardListScore.innerHTML = '';
+
+    firebase.database().ref().once('value')
+    
+    .then(res => { //once returns a promise
+        const data = res.val();
+        let promises = [];
+
+        for (entry in data) {
+            promises.push(
+                firebase.database().ref().once('value')
+            )
+            leaderboardArray.push({
+                user: entry,
+                score: data[entry].score
+            })
+        }
+        return Promise.all(promises);
+    })
+    .then(displayLeaderboard)
+    .catch(err => {
+        console.log(err);
+    })
+}
+
+            // console.log(dbRef);
+            // dbRef.on('value', snapshot => {
+            //     const data = snapshot.val();
+            //     for (entry in data) {
+            //         leaderboardArray.push({
+            //             user: entry,
+            //             score: data[entry].score
+            //         })
+            //     }
+            // })
+    
+            // setInterval(()=> {
+            //     resolve();
+            // }, 1500)
+//         })
+//     } else {
+//         const dbRef = firebase.database().ref();
+//         dbRef.on('value', snapshot => {
+//             const data = snapshot.val();
+//             for (entry in data) {
+//                 leaderboardArray.push({
+//                     user: entry,
+//                     score: data[entry].score
+//                 })
+//             }
+//         })
+//     }
+// }
+
+// async function init() {
+//     await updateLeaderboard();
+//     displayLeaderboard();
+// }
+
+// init();
+
 updateLeaderboard();
+
+
+
+
+
+
+
