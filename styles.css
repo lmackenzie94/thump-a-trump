@@ -70,6 +70,7 @@ h1:before {
     top: -27px;
     left: 50%;
     transform: translateX(-50%);
+    width: 100%;
 }
 
 header {
@@ -276,6 +277,8 @@ header p:focus {
 .swal-button--confirm:focus {
     background-color: #ee6a3a;
 }
+
+/* MEDIA QUERIES */
 
 
 

@@ -49,6 +49,8 @@ function thump(e) {
     scoreboard.textContent = score;
 }
 
+// TO DO: prevent double clicks
+
 // used to temporarily block clicks after game time runs out so user doesn't accidentally close the alert modal
 // REMINDER: look into SweetAlerts allowEnterKey method
 clickBlocker.addEventListener('click', e => {
