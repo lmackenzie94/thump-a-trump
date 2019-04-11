@@ -169,8 +169,8 @@ const displayLeaderboard = () => {
     let i = 1;
     finalLeaderboardArray.forEach(score => {
 
-        leaderboardListUser.innerHTML += `<li><span class="listNumber">${i}.</span>${score.user}</li>`;
-        leaderboardListScore.innerHTML += `<li>${score.score}</li>`;
+        leaderboardListUser.innerHTML += `<li><p><span class="listNumber">${i}.</span>${score.user}</p></li>`;
+        leaderboardListScore.innerHTML += `<li><p>${score.score}</p></li>`;
         i++;
     });
 }

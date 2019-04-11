@@ -26,8 +26,9 @@ body {
     background: red;
     padding: 5px 10px;
     position: absolute;
-    top: 10px;
-    right: 20px;
+    bottom: 15px;
+    right: 50%;
+    transform: translateX(50%);
     border-radius: 5px;
     animation: glow 1s ease-in-out infinite alternate;
 }
@@ -63,6 +64,10 @@ h1 {
     position: relative;
 }
 
+h2 {
+    font-size: 1.3rem;
+}
+
 h1:before {
     content: "Click below to play";
     position: absolute;
@@ -86,11 +91,12 @@ ul, li {
     list-style: none;
 }
 
-header > * {
-    flex: 1 0 calc(100% / 3);
+header h2 {
+    flex: 1 0 auto;
 }
 
-header p {
+.leaderboardButton {
+    flex: 1 0 100%;
     margin: 0;
     color: white;
     transition: all .2s linear;
@@ -99,8 +105,8 @@ header p {
     text-transform: uppercase;
 }
 
-header p:hover,
-header p:focus {
+.leaderboardButton:hover,
+.leaderboardButton:focus {
     color: coral;
 }
 
@@ -118,16 +124,17 @@ header p:focus {
 
 .leaderboardModal {
     background: white;
-    width: 50%;
+    width: 600px;
+    max-width: 80%;
     margin: 50px auto 0 auto;
     padding: 20px;
     border-radius: 15px;
     position: relative;
-    overflow: scroll;
 }
 
 .leaderboardModal h2 {
     margin: 10px 0;
+    font-size: 1.3rem;
 }
 
 .leaderboardList {
@@ -136,7 +143,7 @@ header p:focus {
 }
 
 .leaderboardColumn {
-    flex: 0 1 190px;
+    flex: 0 1 auto;
     text-align: center;
 }
 
@@ -149,9 +156,7 @@ header p:focus {
     color: dodgerblue;
 }
 
-.leaderboardListUser li,
-.leaderboardListScore li {
-    margin: 20px 0;
+.leaderboardColumn p {
     border-bottom: .1px solid lightcoral;
 }
 
@@ -241,10 +246,11 @@ header p:focus {
 
 .start {
     background: white;
+    flex: 1 0 auto;
     border: none;
     box-shadow: 5px 5px 0 coral;
-    padding: 10px 20px;
-    margin: 35px 0 20px 0;
+    padding: 10px;
+    margin: 35px 10px 20px 10px;
     transition: all .2s ease-out;
 }
 
@@ -280,6 +286,77 @@ header p:focus {
 
 /* MEDIA QUERIES */
 
+@media (max-width: 815px) {
+
+    .game {
+        width: 95%;
+    }
+
+    h1,
+    h2 {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 575px) {
+
+    h1,
+    h2 {
+        font-size: 1rem;
+    }
+
+    header h2 {
+        padding-top: 10px;
+    }
+
+    .score,
+    .countdown {
+        display: block;
+        margin-top: 5px;
+    }
+
+    .leaderboardButton {
+        font-size: .8rem;
+    }
+
+    .start {
+        box-shadow: 3px 3px 0 coral;
+    }
+
+    .leaderboardColumn h2,
+    .leaderboardColumn p {
+        font-size: .8rem;
+    }
+}
+
+@media (max-width: 454px) {
+    .name {
+        height: 33px;
+        padding-top: 10px;
+    }
+}
+
+
+@media (max-width: 400px) {
+
+    h1,
+    h2 {
+        font-size: .85rem;
+    }
+    
+    h1:before {
+        font-size: .45rem;
+    }
+
+    .leaderboardColumn h2,
+    .leaderboardColumn p {
+        font-size: .7rem;
+    }
+
+    .name {
+        height: 29px;
+    }
+} 
 
 
 
