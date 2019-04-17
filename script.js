@@ -1,64 +1,59 @@
-const trumps = document.querySelectorAll(".trump");
-const houses = document.querySelectorAll(".house");
-const scoreboard = document.querySelector(".score");
-const leaderboard = document.querySelector(".leaderboard");
-const leaderboardButton = document.querySelector(".leaderboardButton");
-const leaderboardListUser = document.querySelector(".leaderboardListUser");
-const leaderboardListScore = document.querySelector(".leaderboardListScore");
-const closeButton = document.querySelector(".close");
-const startGameButton = document.querySelector(".start");
-const clickBlocker = document.querySelector(".blockClicks");
-let lastHouse;
-let timeUp = false;
-let leaderboardArray = [];
+const app = {};
+
+app.trumps = document.querySelectorAll(".trump");
+app.houses = document.querySelectorAll(".house");
+app.scoreboard = document.querySelector(".score");
+app.leaderboard = document.querySelector(".leaderboard");
+app.leaderboardButton = document.querySelector(".leaderboardButton");
+app.leaderboardListUser = document.querySelector(".leaderboardListUser");
+app.leaderboardListScore = document.querySelector(".leaderboardListScore");
+app.closeButton = document.querySelector(".close");
+app.startGameButton = document.querySelector(".start");
+app.clickBlocker = document.querySelector(".blockClicks");
+app.lastHouse;
+app.timeUp = false;
+app.leaderboardArray = [];
+app.score;
 
 // function to show Trump for random amount of time
-function randomTime(min, max) {
+app.randomTime = (min, max) => {
   return Math.round(Math.random() * (max - min) + min);
-}
+};
 
 // function to select one random Trump
-function randomHouse(houses) {
-  const randomIndex = Math.floor(Math.random() * houses.length);
-  const house = houses[randomIndex];
-  if (house === lastHouse) {
-    return randomHouse(houses);
+app.randomHouse = houses => {
+  const randomIndex = Math.floor(Math.random() * app.houses.length);
+  const house = app.houses[randomIndex];
+  if (house === app.lastHouse) {
+    return app.randomHouse(app.houses);
   }
-  lastHouse = house;
+  app.lastHouse = house;
   return house;
-}
+};
 
 // function to make the randomly selected Trump appear for a random amount of time
-function jump() {
-  const time = randomTime(300, 1000);
-  const house = randomHouse(houses);
+app.jump = () => {
+  const time = app.randomTime(300, 1000);
+  const house = app.randomHouse(app.houses);
   house.classList.add("up");
   setTimeout(() => {
     house.classList.remove("up");
-    if (!timeUp) jump();
+    if (!app.timeUp) app.jump();
   }, time);
-}
-
-trumps.forEach(trump => trump.addEventListener("click", thump));
+};
 
 // add to score when user successfully clicks on a visible Trump
-function thump(e) {
+app.thump = e => {
+  console.log(this);
   if (!e.isTrusted) return;
-  score++;
+  app.score++;
   this.classList.remove("up");
-  scoreboard.textContent = score;
-}
+  app.scoreboard.textContent = app.score;
+};
 
 // TO DO: prevent double clicks
 
-// used to temporarily block clicks after game time runs out so user doesn't accidentally close the alert modal
-// REMINDER: look into SweetAlerts allowEnterKey method
-clickBlocker.addEventListener("click", e => {
-  e.stopPropagation();
-  e.preventDefault();
-});
-
-const handleScoreSubmit = score => {
+app.handleScoreSubmit = score => {
   swal({
     title: `You thumped ${score} ${score === 1 ? "Trump!" : "Trumps!"}`,
     content: "input",
@@ -70,13 +65,13 @@ const handleScoreSubmit = score => {
     }
   })
     .then(val => {
-      userName = val;
-      userScore = score;
-      addToLeaderboard(userName, score);
-      openLeaderboard();
+      app.userName = val;
+      app.userScore = score;
+      app.addToLeaderboard(app.userName, app.score);
+      app.openLeaderboard();
     })
     .catch(err => {
-      if (err && userName !== null) {
+      if (err && app.userName !== null) {
         swal({
           title: "Oops, something went wrong!",
           text:
@@ -88,35 +83,34 @@ const handleScoreSubmit = score => {
         })
           // TO FIX: pressing Enter on error message doesn't close the modal (but clicking the button does)
           .then(() => {
-            handleScoreSubmit(score);
+            app.handleScoreSubmit(app.score);
           });
       } else return;
     });
 };
 
-let score;
 // function to start the game
-function startGame() {
-  timeUp = false;
-  scoreboard.textContent = 0;
-  score = 0;
-  jump();
-  countdown();
-  startGameButton.disabled = true;
+app.startGame = () => {
+  app.timeUp = false;
+  app.scoreboard.textContent = 0;
+  app.score = 0;
+  app.jump();
+  app.countdown();
+  app.startGameButton.disabled = true;
   setTimeout(() => {
     //quickly block all clicks
-    clickBlocker.style.display = "block";
+    app.clickBlocker.style.display = "block";
     setTimeout(() => {
-      clickBlocker.style.display = "none";
+      app.clickBlocker.style.display = "none";
     }, 2000);
-    timeUp = true;
-    startGameButton.disabled = false;
-    handleScoreSubmit(score);
+    app.timeUp = true;
+    app.startGameButton.disabled = false;
+    app.handleScoreSubmit(app.score);
   }, 10000);
-}
+};
 
 // function for the game countdown
-const countdown = () => {
+app.countdown = () => {
   document.querySelector(".countdown").innerHTML = "10";
   let timeLeft = 9;
   let timer = setInterval(() => {
@@ -132,26 +126,21 @@ const countdown = () => {
 };
 
 // function to open leaderboard modal
-const openLeaderboard = () => {
-  leaderboard.style.display = "block";
+app.openLeaderboard = () => {
+  app.leaderboard.style.display = "block";
 };
 
 // function to close leaderboard modal
-const closeLeaderboard = e => {
-  if (e.target === leaderboard || e.target === closeButton) {
-    leaderboard.style.display = "none";
+app.closeLeaderboard = e => {
+  if (e.target === app.leaderboard || e.target === app.closeButton) {
+    app.leaderboard.style.display = "none";
   } else {
     return;
   }
 };
 
-// event listeners
-leaderboardButton.addEventListener("click", openLeaderboard);
-closeButton.addEventListener("click", closeLeaderboard);
-window.addEventListener("click", closeLeaderboard);
-
 // function to add current user's name and most recent score to Firebase
-const addToLeaderboard = (username, score) => {
+app.addToLeaderboard = (username, score) => {
   const dbRef = firebase
     .database()
     .ref()
@@ -159,12 +148,12 @@ const addToLeaderboard = (username, score) => {
   dbRef.set({
     score
   });
-  updateLeaderboard();
+  app.updateLeaderboard();
 };
 
 // function to display username and score in descending order on the page
-const displayLeaderboard = () => {
-  let finalLeaderboardArray = leaderboardArray.sort((a, b) => {
+app.displayLeaderboard = () => {
+  let finalLeaderboardArray = app.leaderboardArray.sort((a, b) => {
     return b.score - a.score;
   });
 
@@ -175,19 +164,19 @@ const displayLeaderboard = () => {
 
   let i = 1;
   finalLeaderboardArray.forEach(score => {
-    leaderboardListUser.innerHTML += `<li><p><span class="listNumber">${i}.</span>${
+    app.leaderboardListUser.innerHTML += `<li><p><span class="listNumber">${i}.</span>${
       score.user
     }</p></li>`;
-    leaderboardListScore.innerHTML += `<li><p>${score.score}</p></li>`;
+    app.leaderboardListScore.innerHTML += `<li><p>${score.score}</p></li>`;
     i++;
   });
 };
 
 // function to update the leaderboard array
-const updateLeaderboard = () => {
-  leaderboardArray = [];
-  leaderboardListUser.innerHTML = ""; //find better way to do this
-  leaderboardListScore.innerHTML = "";
+app.updateLeaderboard = () => {
+  app.leaderboardArray = [];
+  app.leaderboardListUser.innerHTML = ""; //find better way to do this
+  app.leaderboardListScore.innerHTML = "";
 
   firebase
     .database()
@@ -205,17 +194,34 @@ const updateLeaderboard = () => {
             .ref()
             .once("value")
         );
-        leaderboardArray.push({
+        app.leaderboardArray.push({
           user: entry,
           score: data[entry].score
         });
       }
       return Promise.all(promises); // wait for all promises to resolve before running displayLeaderboard
     })
-    .then(displayLeaderboard)
+    .then(app.displayLeaderboard)
     .catch(err => {
       console.log(err);
     });
 };
 
-updateLeaderboard(); // run on page load to immediately populate the leaderboard
+app.init = () => {
+  // used to temporarily block clicks after game time runs out so user doesn't accidentally close the alert modal
+  // REMINDER: look into SweetAlerts allowEnterKey method
+  app.clickBlocker.addEventListener("click", e => {
+    e.stopPropagation();
+    e.preventDefault();
+  });
+
+  app.trumps.forEach(trump => trump.addEventListener("click", app.thump));
+
+  app.leaderboardButton.addEventListener("click", app.openLeaderboard);
+  app.closeButton.addEventListener("click", app.closeLeaderboard);
+  window.addEventListener("click", app.closeLeaderboard);
+
+  app.updateLeaderboard(); // run on page load to immediately populate the leaderboard
+};
+
+app.init();
