@@ -283,7 +283,7 @@ header h2 {
 
 .leaderboardModal {
   background: white;
-  width: 600px;
+  width: 500px;
   max-width: 80%;
   margin: 50px auto 0 auto;
   padding: 20px;
@@ -313,10 +313,6 @@ header h2 {
 .leaderboardColumn h2 {
   font-size: 1rem;
   color: dodgerblue;
-}
-
-.leaderboardColumn p {
-  border-bottom: 0.1px solid lightcoral;
 }
 
 .listNumber {
@@ -486,13 +482,6 @@ header h2 {
   }
 }
 
-@media (max-width: 454px) {
-  .name {
-    height: 33px;
-    padding-top: 10px;
-  }
-}
-
 @media (max-width: 400px) {
   h1,
   h2 {
@@ -506,9 +495,5 @@ header h2 {
   .leaderboardColumn h2,
   .leaderboardColumn p {
     font-size: 0.7rem;
-  }
-
-  .name {
-    height: 29px;
   }
 }

@@ -43,8 +43,8 @@ app.jump = () => {
 };
 
 // add to score when user successfully clicks on a visible Trump
-app.thump = e => {
-  console.log(this);
+// wasn't working with arrow function (not sure why) 'this.classList' wasn't defined
+app.thump = function(e) {
   if (!e.isTrusted) return;
   app.score++;
   this.classList.remove("up");
