@@ -1,82 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Thump-A-Trump</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <span class="workInProgress">Work In Progress</span>
     <div class="blockClicks"></div>
     <header class="wrapper">
-        <h2>Time: <span class="countdown">10</span></h2>
-        <button class="start" onClick="startGame()">
-            <h1>Thump-A-Trump</h1>
-        </button>
-        <h2>Score: <span class="score">0</span></h2>
-        <p class="leaderboardButton">Leaderboard</p>
+      <h2>Time: <span class="countdown">10</span></h2>
+      <button class="start" onClick="app.startGame()">
+        <h1>Thump-A-Trump</h1>
+      </button>
+      <h2>Score: <span class="score">0</span></h2>
+      <p class="leaderboardButton">Leaderboard</p>
     </header>
     <section class="game">
-        <div class="leaderboard">
-            <div class="leaderboardModal">
-                <span class="close">&times;</span>
-                <h2>Leaderboard</h2>
-                <div class="leaderboardList">
-                    <div class="leaderboardColumn">
-                        <h2 class="name">Name:</h2>
-                        <ul class="leaderboardListUser">
-                            
-                        </ul>
-                    </div>
-                    <div class="leaderboardColumn">
-                        <h2>Trumps Thumped:</h2>
-                        <ul class="leaderboardListScore">
-                    
-                        </ul>
-                    </div>
-                </div>
+      <div class="leaderboard">
+        <div class="leaderboardModal">
+          <span class="close">&times;</span>
+          <h2>Leaderboard</h2>
+          <div class="leaderboardList">
+            <div class="leaderboardColumn">
+              <h2 class="name">Name:</h2>
+              <ul class="leaderboardListUser"></ul>
             </div>
+            <div class="leaderboardColumn">
+              <h2>Trumps Thumped:</h2>
+              <ul class="leaderboardListScore"></ul>
+            </div>
+          </div>
         </div>
-        <div class="house house1">
-            <div class="trump trump1"></div>
-        </div>
-        <div class="house house2">
-            <div class="trump trump2"></div>
-        </div>
-        <div class="house house3">
-            <div class="trump trump3"></div>
-        </div>
-        <div class="house house4">
-            <div class="trump trump2"></div>
-        </div>
-        <div class="house house5">
-            <div class="trump trump3"></div>
-        </div>
-        <div class="house house6">
-            <div class="trump trump1"></div>
-        </div>
+      </div>
+      <div class="house house1">
+        <div class="trump trump1"></div>
+      </div>
+      <div class="house house2">
+        <div class="trump trump2"></div>
+      </div>
+      <div class="house house3">
+        <div class="trump trump3"></div>
+      </div>
+      <div class="house house4">
+        <div class="trump trump2"></div>
+      </div>
+      <div class="house house5">
+        <div class="trump trump3"></div>
+      </div>
+      <div class="house house6">
+        <div class="trump trump1"></div>
+      </div>
     </section>
 
     <!-- <div>Icons made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"
             title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"
             title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> -->
 
-<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
-<script>
-    // Initialize Firebase
-    var config = {
-        apiKey: "AIzaSyCeR28Xj_mGwhH0PODd3IefDhWbKoG7ggU",
-        authDomain: "thump-a-trump.firebaseapp.com",
-        databaseURL: "https://thump-a-trump.firebaseio.com",
-        projectId: "thump-a-trump",
-        storageBucket: "",
-        messagingSenderId: "63994682603"
-    };
-    firebase.initializeApp(config);
-</script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="script.js"></script>
-</body>
+    <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: 'AIzaSyCeR28Xj_mGwhH0PODd3IefDhWbKoG7ggU',
+        authDomain: 'thump-a-trump.firebaseapp.com',
+        databaseURL: 'https://thump-a-trump.firebaseio.com',
+        projectId: 'thump-a-trump',
+        storageBucket: '',
+        messagingSenderId: '63994682603'
+      };
+      firebase.initializeApp(config);
+    </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="script.js"></script>
+  </body>
 </html>
