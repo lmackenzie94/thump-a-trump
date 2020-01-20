@@ -1,3 +1,4 @@
+import { randomTime } from './lib';
 const trumps = document.querySelectorAll('.trump');
 const houses = document.querySelectorAll('.house');
 const scoreboard = document.querySelector('.score');
@@ -29,11 +30,7 @@ app.init = function() {
   leaderboardButton.addEventListener('click', app.openLeaderboard);
   closeButton.addEventListener('click', app.closeLeaderboard);
   window.addEventListener('click', app.closeLeaderboard);
-};
-
-// function to show Trump for random amount of time
-app.randomTime = function(min, max) {
-  return Math.round(Math.random() * (max - min) + min);
+  startGameButton.addEventListener('click', app.startGame);
 };
 
 // function to select one random Trump
@@ -49,7 +46,7 @@ app.randomHouse = function(houses) {
 
 // function to make the randomly selected Trump appear for a random amount of time
 app.jump = function() {
-  const time = app.randomTime(300, 1000);
+  const time = randomTime(300, 1000);
   const house = app.randomHouse(houses);
   house.classList.add('up');
   setTimeout(() => {
@@ -200,7 +197,7 @@ app.updateLeaderboard = function() {
       const data = res.val();
       let promises = [];
 
-      for (entry in data) {
+      for (const entry in data) {
         promises.push(
           firebase
             .database()

@@ -1,0 +1,67 @@
+@media (max-width: 815px) {
+  .game {
+    width: 95%;
+  }
+
+  h1,
+  h2 {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 575px) {
+  h1,
+  h2 {
+    font-size: 1rem;
+  }
+
+  header h2 {
+    padding-top: 10px;
+  }
+
+  .score,
+  .countdown {
+    display: block;
+    margin-top: 5px;
+  }
+
+  .leaderboardButton {
+    font-size: 0.8rem;
+  }
+
+  .start {
+    box-shadow: 3px 3px 0 coral;
+  }
+
+  .leaderboardColumn h2,
+  .leaderboardColumn p {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 454px) {
+  .name {
+    height: 33px;
+    padding-top: 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  h1,
+  h2 {
+    font-size: 0.85rem;
+  }
+
+  h1:before {
+    font-size: 0.45rem;
+  }
+
+  .leaderboardColumn h2,
+  .leaderboardColumn p {
+    font-size: 0.7rem;
+  }
+
+  .name {
+    height: 29px;
+  }
+}

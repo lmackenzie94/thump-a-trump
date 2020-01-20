@@ -1,0 +1,19 @@
+{
+  "name": "thump-a-trump",
+  "version": "1.0.0",
+  "description": "Like Whack-A-Mole, but more satisfying",
+  "main": "index.js",
+  "repository": "https://github.com/lmackenzie94/thump-a-trump.git",
+  "author": "Luke MacKenzie <luke.mackenzie@campjefferson.com>",
+  "license": "MIT",
+  "scripts": {
+    "bundle": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "dependencies": {
+    "autoprefixer": "^9.7.4"
+  },
+  "devDependencies": {
+    "cssnano": "^4.1.10"
+  }
+}
