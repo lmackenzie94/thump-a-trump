@@ -77,8 +77,7 @@ app.handleScoreSubmit = function(score) {
     }
   })
     .then(val => {
-      userName = val;
-      userScore = score;
+      let userName = val;
       app.addToLeaderboard(userName, score);
       app.openLeaderboard();
     })

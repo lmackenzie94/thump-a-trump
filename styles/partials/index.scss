@@ -1,12 +1,19 @@
-@import './normalize.css';
-@import './responsive.css';
+// VARIABLES
+
+$background: dodgerblue;
+$secondary: coral;
+$secondaryLight: lightCoral;
+$secondaryDark: #ee6a3a;
+$white: white;
+$black: black;
+$wip: red;
 
 html {
   font-size: 125%;
 }
 
 body {
-  background: dodgerblue;
+  background: $background;
   min-height: 100vh;
   text-align: center;
   font-size: 1rem;
@@ -17,8 +24,8 @@ body {
 
 .workInProgress {
   font-size: 0.6rem;
-  color: white;
-  background: red;
+  color: $white;
+  background: $wip;
   padding: 5px 10px;
   position: absolute;
   bottom: 15px;
@@ -30,10 +37,10 @@ body {
 
 @keyframes glow {
   from {
-    box-shadow: 0 0 0 red;
+    box-shadow: 0 0 0 $wip;
   }
   to {
-    box-shadow: 0 0 10px red;
+    box-shadow: 0 0 10px $wip;
   }
 }
 
@@ -94,7 +101,7 @@ header h2 {
 .leaderboardButton {
   flex: 1 0 100%;
   margin: 0;
-  color: white;
+  color: $white;
   transition: all 0.2s linear;
   cursor: pointer;
   font-size: 0.9rem;
@@ -103,7 +110,7 @@ header h2 {
 
 .leaderboardButton:hover,
 .leaderboardButton:focus {
-  color: coral;
+  color: $secondary;
 }
 
 .leaderboard {
@@ -119,7 +126,7 @@ header h2 {
 }
 
 .leaderboardModal {
-  background: white;
+  background: $white;
   width: 600px;
   max-width: 80%;
   margin: 50px auto 0 auto;
@@ -149,15 +156,15 @@ header h2 {
 
 .leaderboardColumn h2 {
   font-size: 1rem;
-  color: dodgerblue;
+  color: $background;
 }
 
 .leaderboardColumn p {
-  border-bottom: 0.1px solid lightcoral;
+  border-bottom: 0.1px solid $secondaryLight;
 }
 
 .listNumber {
-  color: lightcoral;
+  color: $secondaryLight;
   margin-right: 10px;
   font-size: 80%;
 }
@@ -174,7 +181,7 @@ header h2 {
 
 .close:hover,
 .close:focus {
-  color: coral;
+  color: $secondary;
 }
 
 .game {
@@ -241,10 +248,10 @@ header h2 {
 }
 
 .start {
-  background: white;
+  background: $white;
   flex: 1 0 auto;
   border: none;
-  box-shadow: 5px 5px 0 coral;
+  box-shadow: 5px 5px 0 $secondary;
   padding: 10px;
   margin: 35px 10px 20px 10px;
   transition: all 0.2s ease-out;
@@ -253,8 +260,8 @@ header h2 {
 .start:hover,
 .start:focus {
   box-shadow: none;
-  background: coral;
-  color: black;
+  background: $secondary;
+  color: $black;
 }
 
 .start:active {
@@ -263,19 +270,19 @@ header h2 {
 
 .score,
 .countdown {
-  color: coral;
+  color: $secondary;
 }
 
 .swal-button--confirm {
-  background-color: coral;
+  background-color: $secondary;
   text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
 }
 
 .swal-button--confirm:not([disabled]):hover {
-  background-color: #ee6a3a;
+  background-color: $secondaryDark;
 }
 
 .swal-button--confirm:active,
 .swal-button--confirm:focus {
-  background-color: #ee6a3a;
+  background-color: $secondaryDark;
 }
