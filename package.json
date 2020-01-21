@@ -7,11 +7,12 @@
   "author": "Luke MacKenzie <luke.mackenzie@campjefferson.com>",
   "license": "MIT",
   "scripts": {
-    "bundle": "parcel index.html",
-    "build": "parcel build index.html"
+    "bundle": "parcel src/index.html",
+    "build": "parcel build src/index.html --no-source-maps"
   },
   "dependencies": {
-    "autoprefixer": "^9.7.4"
+    "autoprefixer": "^9.7.4",
+    "dotenv": "^8.2.0"
   },
   "devDependencies": {
     "cssnano": "^4.1.10",

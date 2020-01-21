@@ -1,4 +1,5 @@
 import { randomTime } from './lib';
+import { config as fbConfig } from './firebaseConfig';
 const trumps = document.querySelectorAll('.trump');
 const houses = document.querySelectorAll('.house');
 const scoreboard = document.querySelector('.score');
@@ -18,6 +19,7 @@ let leaderboardArray = [];
 const app = {};
 
 app.init = function() {
+  firebase.initializeApp(fbConfig);
   app.updateLeaderboard(); // run on page load to immediately populate the leaderboard
   // event listeners
   trumps.forEach(trump => trump.addEventListener('click', app.thump));
@@ -214,6 +216,16 @@ app.updateLeaderboard = function() {
     .catch(err => {
       console.log(err);
     });
+};
+
+// FIREBASE CONFIG
+var config = {
+  apiKey: 'AIzaSyCeR28Xj_mGwhH0PODd3IefDhWbKoG7ggU',
+  authDomain: 'thump-a-trump.firebaseapp.com',
+  databaseURL: 'https://thump-a-trump.firebaseio.com',
+  projectId: 'thump-a-trump',
+  storageBucket: '',
+  messagingSenderId: '63994682603'
 };
 
 app.init();

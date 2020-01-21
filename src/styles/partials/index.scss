@@ -191,7 +191,7 @@ header h2 {
   flex-wrap: wrap;
   align-items: flex-end;
   margin: 0 auto;
-  cursor: url(/assets/hammer.png), auto;
+  cursor: url(../assets/hammer.png), auto;
 }
 
 .house {
@@ -205,7 +205,7 @@ header h2 {
 .house:after {
   content: '';
   display: block;
-  background: url(/assets/whitehouse.png) center no-repeat;
+  background: url(../assets/whitehouse.png) center no-repeat;
   background-size: cover;
   position: absolute;
   width: 110%;
@@ -229,17 +229,17 @@ header h2 {
 }
 
 .trump.trump1 {
-  background: url(/assets/trump.png) center 20% no-repeat;
+  background: url(../assets/trump.png) center 20% no-repeat;
   background-size: contain;
 }
 
 .trump.trump2 {
-  background: url(/assets/trump2.png) center 40% no-repeat;
+  background: url(../assets/trump2.png) center 40% no-repeat;
   background-size: contain;
 }
 
 .trump.trump3 {
-  background: url(/assets/trump3.png) center 40% no-repeat;
+  background: url(../assets/trump3.png) center 40% no-repeat;
   background-size: contain;
 }
 
