@@ -1,5 +1,7 @@
 import { randomTime } from './lib';
 import { config as fbConfig } from './firebaseConfig';
+import 'normalize.css';
+import '../styles/main.scss';
 const trumps = document.querySelectorAll('.trump');
 const houses = document.querySelectorAll('.house');
 const scoreboard = document.querySelector('.score');

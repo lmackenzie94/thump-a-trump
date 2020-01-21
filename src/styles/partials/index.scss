@@ -8,12 +8,15 @@ $white: white;
 $black: black;
 $wip: red;
 
+// STYLES
+
 html {
   font-size: 125%;
 }
 
 body {
   background: $background;
+  font-family: 'Helvetica';
   min-height: 100vh;
   text-align: center;
   font-size: 1rem;
