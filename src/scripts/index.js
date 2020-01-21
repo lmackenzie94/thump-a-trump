@@ -218,14 +218,4 @@ app.updateLeaderboard = function() {
     });
 };
 
-// FIREBASE CONFIG
-var config = {
-  apiKey: 'AIzaSyCeR28Xj_mGwhH0PODd3IefDhWbKoG7ggU',
-  authDomain: 'thump-a-trump.firebaseapp.com',
-  databaseURL: 'https://thump-a-trump.firebaseio.com',
-  projectId: 'thump-a-trump',
-  storageBucket: '',
-  messagingSenderId: '63994682603'
-};
-
 app.init();
